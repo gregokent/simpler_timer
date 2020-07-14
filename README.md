@@ -12,7 +12,7 @@ This library provides a very simple, poll based timer.
 To use, include the following in `Cargo.toml`
 ```toml
 [dependencies]
-simpler_timer = "0.1.0"
+simpler_timer = "0.1.1"
 ```
 
 ```rust
