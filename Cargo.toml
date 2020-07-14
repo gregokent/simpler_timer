@@ -6,6 +6,7 @@ edition = "2018"
 description = "A very simple timer library with limited, but straight-forward functionality"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/gregokent/simpler_timer"
+documentation = "https://docs.rs/simpler_timer"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
