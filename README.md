@@ -1,8 +1,11 @@
 Simpler Timer
 =============
 
-![Crates.io](https://img.shields.io/crates/v/simpler_timer)
-![Docs.rs](https://docs.rs/simpler_timer/badge.svg)
+[![Crates.io](https://img.shields.io/crates/v/simpler_timer)][crates_url]
+[![Docs.rs](https://docs.rs/simpler_timer/badge.svg)][docs_url]
+
+[crates_url]: https://crates.io/crates/simpler_timer
+[docs_url]: https://docs.rs/simpler_timer
 
 This library provides a very simple, poll based timer.
 
