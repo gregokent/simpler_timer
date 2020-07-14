@@ -1,5 +1,5 @@
 //!
-//! # simple_timer
+//! # simpler_timer
 //! 
 //! A simple timer mechanism to track arbitrary timeouts.
 //! It doesn't do anything fancy, e.g. no callbacks upon expiry, just give it a Duration
@@ -33,9 +33,7 @@
 //! 
 //! ```
 //!
-//! The decision was made intentionally to only require a `&self` for 
-//! resetting a timer so that another object can own a `Timer` and not require
-//! `&mut self` of the object owning the timer.
+
 //! 
 use std::cell::Cell;
 use std::time::{Duration, Instant};
@@ -70,7 +68,10 @@ impl Timer {
     /// Resets the timer.
     /// 
     /// # Note
-    /// Timers with `Duration` > 0 will no longer be expired after `reset()`
+    /// The decision was made intentionally to only require a `&self` for 
+    /// resetting a timer so that another object can own a `Timer` and not require
+    /// `&mut self` of the object owning the timer.   
+    /// 
     /// `elapsed()` will start over at 0 after a `reset()`
     pub fn reset(&self) {
         self.instant.set(Instant::now());
