@@ -78,8 +78,24 @@ impl Timer {
     }
 
     /// Check if the timer is expired
+    /// 
+    /// `expired` = `elapsed` >= `duration`
     pub fn expired(&self) -> bool {
-        self.instant.get().elapsed() > self.duration
+        self.instant.get().elapsed() >= self.duration
+    }
+
+    /// Return a `Duration` of the configured time of the Timer
+    pub fn duration(&self) -> Duration {
+        self.duration
+    }
+
+    /// Block execution until the timer expires. 
+    /// 
+    /// - If the timer is already expired, this returns immediately
+    pub fn wait(&self) {
+        if let Some(duration) = self.duration.checked_sub(self.instant.get().elapsed()) {
+            std::thread::sleep(duration);
+        }
     }
 
     /// Get `Duration` of time elapsed since `Timer` `reset`
@@ -93,4 +109,29 @@ impl Timer {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
+    #[test]
+    #[ignore]
+    fn wait_test() {
+        let timer = Timer::with_duration(Duration::from_millis(500));
+        timer.wait();
+        assert!(timer.elapsed().as_millis() >= 500);
+    }
+
+    // This test is really poor as it relies on actual time and not a mocked time, so results are unpredictable
+    #[test]
+    #[ignore]
+    fn wait_should_account_for_elapsed_time() {
+        let timer = Timer::with_duration(Duration::from_millis(50));
+        std::thread::sleep(Duration::from_millis(25));
+        let pre_wait = timer.elapsed();
+        timer.wait();
+
+        let diff = timer.elapsed() - pre_wait;
+        let diff = diff.as_millis();
+        assert!(diff < 50);
+        assert!(diff >= 25);
+    }
+
 }
