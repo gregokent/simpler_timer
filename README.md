@@ -35,6 +35,6 @@ fn main() {
         }
     }
 
-    println!("total elapsed time: {}ms", timeout.elapsed());
+    println!("total elapsed time: {}ms", timeout.elapsed().as_millis());
 }
 ```
