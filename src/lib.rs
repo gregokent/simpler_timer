@@ -9,6 +9,7 @@
 //! # Example
 //! 
 //! ```
+//! use simpler_timer::Timer;
 //! use std::time::Duration;
 //! 
 //! // 100ms timer
